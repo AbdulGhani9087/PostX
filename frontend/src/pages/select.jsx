@@ -4,17 +4,60 @@ import { useNavigate } from 'react-router-dom'
 const Select = () => {
   const navigate = useNavigate()
 
+  // Safe parse user from localStorage
+  let user = null
+  try {
+    const raw = localStorage.getItem('user')
+    if (raw) user = JSON.parse(raw)
+  } catch (e) {
+    console.error('Failed to parse user from localStorage', e)
+  }
+
+  const displayName = user?.username || user?.name || user?.email || 'User'
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
   return (
     <section className="select-section">
       <div className="select-container">
         <div className="select-header">
-          <div className="select-logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
+          {/* Left: Logo + Title */}
+          <div className="select-header-left">
+            <div className="select-logo">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="select-title">PostHub</h1>
+              <p className="select-subtitle">What would you like to do today?</p>
+            </div>
           </div>
-          <h1 className="select-title">PostHub</h1>
-          <p className="select-subtitle">What would you like to do today?</p>
+
+          {/* Right: User info + Logout */}
+          <div className="select-header-right">
+            <div className="select-user-badge">
+              <div className="select-user-avatar">
+                {displayName.charAt(0).toUpperCase()}
+              </div>
+              <div className="select-user-info">
+                <span className="select-user-label">Logged in as</span>
+                <span className="select-user-name">{displayName}</span>
+              </div>
+            </div>
+            <button onClick={handleLogout} className="select-logout-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Logout
+            </button>
+          </div>
         </div>
 
         <div className="select-grid">

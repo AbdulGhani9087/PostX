@@ -21,6 +21,10 @@ const upload = multer({ storage: multer.memoryStorage() });
 // ========================
 
 // Signup
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Instagram Clone API');
+});
 app.post('/signup', async (req, res) => {
     try {
         const { username, email, password } = req.body;

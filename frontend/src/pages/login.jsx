@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -27,6 +28,9 @@ const Login = () => {
             });
 
             const data = await res.json();
+             console.log('Full response:', data);  // ADD THIS
+             console.log('res.ok:', res.ok);       // ADD THIS
+
 
             if (!res.ok) {
                 throw new Error(data.message || 'Login failed');
@@ -34,7 +38,9 @@ const Login = () => {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            navigate('/');
+            console.log('token saved:', localStorage.getItem('token')); // ADD THIS
+            console.log('user saved:', localStorage.getItem('user'));   // ADD THIS
+            navigate('/select');
         } catch (err) {
             setError(err.message);
         } finally {
