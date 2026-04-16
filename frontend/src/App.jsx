@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
-import Select from './pages/Select'
+import Select from './pages/select'
 import CreatePost from './pages/createpost'
 import Feed from './pages/feed'
 import UpdateCaption from './pages/updatecaption'
