@@ -15,7 +15,7 @@ const Delete = () => {
     try {
       setLoading(true)
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3000/posts', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -33,7 +33,7 @@ const Delete = () => {
     try {
       setDeletingId(id)
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/deletepost/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/deletepost/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

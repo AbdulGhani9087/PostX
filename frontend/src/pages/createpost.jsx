@@ -60,7 +60,7 @@ const CreatePost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3000/createpost', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/createpost`, {
         method: 'POST',
         headers: { 
           'Authorization': `Bearer ${token}`

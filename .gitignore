@@ -1,8 +1,12 @@
-# Environment variables
+# Environment variables (local secrets - never commit)
 .env
 backend/.env
 frontend/.env
-*.env
+*.env.local
+
+# Build output
+frontend/dist/
+frontend/build/
 
 # Dependencies
 node_modules/

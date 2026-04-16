@@ -16,7 +16,7 @@ const UpdateCaption = () => {
     try {
       setLoading(true)
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3000/posts', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -45,7 +45,7 @@ const UpdateCaption = () => {
     try {
       setUpdating(true)
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/updatecaption/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/updatecaption/${id}`, {
         method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
